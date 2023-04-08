@@ -1,0 +1,59 @@
+
+
+<div *ngIf="currentUsers == [] ; else nobody">
+  <h2>Aktualne v nemá nik rezerváciu ! </h2>
+  <a routerLink="allrezervation" style="color: black">Zobrazit všetky rezervácie </a>
+</div>
+<ng-template #nobody >
+  <span style="display: flex; justify-content: space-between; align-items: flex-end">
+    <h2>Aktualne v má rezerváciu : </h2>
+    <a routerLink="allrezervation" style="color: black">Zobrazit všetky rezervácie </a>
+  </span>
+  <div class="row mt-3 mb-3" style="padding: 10px ; box-shadow: 10px 5px 5px whitesmoke;">
+     <div class="col-2 actualRezervation" *ngFor="let user of currentUsers">
+       <h6>
+          Meno:
+       </h6>
+       <span class="mb-1">
+         {{user.firstName}} {{user.lastName}}
+       </span>
+    </div>
+  </div>
+</ng-template>
+<h2 class="mb-3">
+  Zoznam pouzivatelov
+</h2>
+<table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+  <thead>
+  <tr>
+    <th>Meno</th>
+    <th>Priezvisko</th>
+    <th>Email</th>
+    <th>Heslo</th>
+    <th class="icon icon-link-colum">Edit</th>
+    <th class="icon icon-link-colum">Delete</th>
+    <th> Rola </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of items">
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.password}}</td>
+    <td><a [routerLink]="[user.id,'editUser']" ><i class="fa-solid fa-pen-to-square"></i></a></td>
+    <td><a (click)="openModal(template,user)"><i class="fa-solid fa-trash-can"></i></a></td>
+    <td>{{user.role}}</td>
+  </tr>
+  </tbody>
+</table>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Naozaj chceš odstraniť zadaného použivateľa ? <b>{{ user.firstName }} {{ user.lastName }}</b></p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+  </div>
+</ng-template>
+
+
+

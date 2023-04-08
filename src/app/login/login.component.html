@@ -1,0 +1,43 @@
+
+
+<div class="row mt-5" >
+  <div class="col">
+    <div class="TitleDiv" >
+      <h1 class="display-1">JuRez</h1>
+      <h1 class="display-2">YouRezervation</h1>
+    </div>
+  </div>
+  <div class="col">
+    <form (ngSubmit)="check(formElement)" #formElement=ngForm [class.was-validated]="formElement.submitted || formElement.touched">
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+
+        <label class="form-label" for="email">Email</label>
+        <input name="email" id="email" class="form-control" ngModel required #email="ngModel">
+
+        <label class="form-label" for="form2Example2">Heslo</label>
+        <input type="password" name="password" id="form2Example2" class="form-control" ngModel required #password="ngModel"/>
+      </div>
+      <div *ngIf="error != undefined " class="alert alert-danger" role="alert">
+        Zadal si zly email alebo heslo
+      </div>
+      <div class="row">
+        <button type="submit" class="btn btn-primary btn-block col"> Prihlasit </button>
+        <button class="g_id_signin col" data-type="standard" data-auto_prompt="false" ></button>
+        <button class="btn btn-primary col" routerLink="newUser"> Registruj sa </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!--<div class="container mt-5">-->
+<!--  <h1>Google Login with Angular - ItSolutionStuff.com</h1>-->
+<!--  <div class="row mt-5">-->
+<!--    <div class="col-md-4 mt-2 m-auto ">-->
+<!--      <button class="btn btn-danger" #loginRef>-->
+<!--        Login with Google-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

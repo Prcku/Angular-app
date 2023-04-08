@@ -1,0 +1,48 @@
+
+<div>
+  <h1>Aktuálne rezervácie</h1>
+  <table class="table table-sm">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ČAS</th>
+      <th scope="col">Zrušit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of items ">
+      <th *ngIf="item.status == true" scope="row">#</th>
+      <td *ngIf="item.status == true">{{item.currentTime}}</td>
+      <td *ngIf="item.status == true">
+        <a (click)="openModal(template,item)"><i class="fa-solid fa-trash-can"></i></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h1>Historia</h1>
+  <table class="table table-sm">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ČAS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of inactive; let j = index;">
+        <th scope="row">{{j + 1}}</th>
+        <td>{{item.currentTime}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Naozaj chceš odstraniť zadanú rezerváciu ? {{rezervation_to_delete.currentTime | date: "MM.dd HH:mm"}}</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+  </div>
+</ng-template>
+

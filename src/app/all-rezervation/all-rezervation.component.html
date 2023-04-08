@@ -1,0 +1,30 @@
+<span style="display: flex; justify-content: space-between; align-items: flex-end" class="m-2">
+    <h2>Zobraz rezervácie z :</h2>
+  <div class="container">
+    <form [formGroup]="myForm">
+      <div class="row">
+        <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group">
+          <input type="text" class="form-control mb-3" placeholder="Datepicker" bsDatepicker formControlName="date" (ngModelChange)="selected_date()" />
+          <pre hidden *ngIf="myForm.value.date" ></pre>
+        </div>
+      </div>
+    </form>
+</div>
+  </span>
+<div>
+  <ul>
+    <li *ngFor="let recipient of rezervations | keyvalue"  >
+      <h6> {{recipient.key | date: "HH:mm"}} </h6>
+      <span *ngFor="let user of recipient.value" class="p-3 m-5">
+        {{user.firstName}} {{user.lastName}} <a *ngIf="compareTime(recipient.key)" (click)="openModal(template,user,recipient.key)"><i class="fa-solid fa-trash-can"></i></a>
+      </span>
+    </li>
+  </ul>
+</div>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Naozaj chceš odstraniť zadanú rezerváciu ? <b> {{cancel_time | date: "MM.dd HH:mm"}} </b></p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+  </div>
+</ng-template>

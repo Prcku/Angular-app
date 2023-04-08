@@ -1,0 +1,37 @@
+<form (submit)="submit(form)" #form=ngForm>
+  <div class="mb-3">
+    <label for="firstName" class="form-label">Meno</label>
+    <input type="text" class="form-control" id="firstName"
+           name="firstName" [(ngModel)]="item.firstName" >
+    <label for="lastName" class="form-label">Priezvisko</label>
+    <input type="text" class="form-control" id="lastName"
+           name="lastName" [(ngModel)]="item.lastName"  >
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email"
+           name="email" [(ngModel)]="item.email"  >
+    <label for="password" class="form-label">Heslo</label>
+    <input type="text" class="form-control" id="password"
+           name="password" [(ngModel)]="item.password"  >
+    <label for="selectid" class="form-label">Opravnenie</label>
+<!--    <input type="text" class="form-control" id="role"-->
+<!--           name="role" [(ngModel)]="item.role">-->
+    <select [(ngModel)]="item.role" (ngModelChange)="modo()" id="selectid" name="selectid" class="form-control">
+      <option value="ROLE_ADMIN">ADMIN</option>
+      <option value="ROLE_USER">USER</option>
+      <option value="ROLE_WATCHER">WATCHER</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="openModal(template)">Submit</button>
+</form>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{infoText}}</p>
+  </div>
+</ng-template>
