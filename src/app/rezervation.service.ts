@@ -14,7 +14,7 @@ export class RezervationService {
   }
 
   getGeneratedRezervation(date: string ){
-    return this.http.get<Rezervation[]>('/api/rezervation/kalendar/' + date).pipe(
+    return this.http.get<Rezervation[]>('https://jurezapp-production.up.railway.app/api/rezervation/kalendar/' + date).pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
@@ -30,7 +30,7 @@ export class RezervationService {
   }
 
   getRezervationOnThisTime(date: string | null){
-    return this.http.get<number>('/api/rezervation/time/' +date).pipe(
+    return this.http.get<number>('https://jurezapp-production.up.railway.app/api/rezervation/time/' +date).pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
@@ -45,7 +45,7 @@ export class RezervationService {
 
   bookRezervation(date: string | null, id: number){
     // @ts-ignore
-    return this.http.post("/api/rezervation/time/" + id + '/' + date).pipe(
+    return this.http.post("https://jurezapp-production.up.railway.app/api/rezervation/time/" + id + '/' + date).pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
@@ -81,7 +81,7 @@ export class RezervationService {
 
   cancelRezervation(date: string, id:number){
     // @ts-ignore
-    return this.http.delete("/api/rezervation/time/cancel/" + date + '/' + id ).pipe(
+    return this.http.delete("https://jurezapp-production.up.railway.app/api/rezervation/time/cancel/" + date + '/' + id ).pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
