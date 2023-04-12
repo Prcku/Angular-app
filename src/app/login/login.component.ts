@@ -31,20 +31,20 @@ export class LoginComponent{
               ngZone: NgZone) {
 
     // @ts-ignore
-    window['onSingIn'] = (user: any) => ngZone.run(
-      () => {
-        this.afterSingUp({googleUser: user});
-      }
-    )
-    this.error = undefined;
+    // window['onSingIn'] = (user: any) => ngZone.run(
+    //   () => {
+    //     this.afterSingUp({googleUser: user});
+    //   }
+    // )
+    // this.error = undefined;
   }
 
-  afterSingUp({googleUser}: { googleUser: any } ){
-    console.log(googleUser)
-    this.guser = googleUser;
-    this.localStorageService.set("token", googleUser.credential);
-    this.router.navigate(['/home'])
-  }
+  // afterSingUp({googleUser}: { googleUser: any } ){
+  //   console.log(googleUser)
+  //   this.guser = googleUser;
+  //   this.localStorageService.set("token", googleUser.credential);
+  //   this.router.navigate(['/home'])
+  // }
   // ngOnInit(): void {
   //   this.googleAuthSDK();
   //   // this.signInService.observable().subscribe( user => {

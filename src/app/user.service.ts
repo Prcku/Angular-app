@@ -19,24 +19,16 @@ export class UserService {
   }
 
   getAll(){
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
-    return this.http.get<User[]>('/api/user', {headers});
+    console.log("ziskanie vsetkych userov")
+    return this.http.get<User[]>('https://jurezapp-production.up.railway.app/api/user');
   }
 
   getById(id:number){
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
-    return this.http.get<User>('https://jurezapp-production.up.railway.app/api/user/' + id, {headers});
+    return this.http.get<User>('https://jurezapp-production.up.railway.app/api/user/' + id);
   }
 
   getUserRezervation(id:number){
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
-    return this.http.get<Rezervation[]>('https://jurezapp-production.up.railway.app/api/user/rezervation/' + id, {headers}).pipe(
+    return this.http.get<Rezervation[]>('https://jurezapp-production.up.railway.app/api/user/rezervation/' + id).pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
@@ -50,10 +42,7 @@ export class UserService {
   }
 
   getCurrentUsersInRezervation(){
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
-    return this.http.get<User[]>('https://jurezapp-production.up.railway.app/api/user/currentrezervation/',{headers}).pipe(
+    return this.http.get<User[]>('https://jurezapp-production.up.railway.app/api/user/currentrezervation/').pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
@@ -67,10 +56,7 @@ export class UserService {
   }
 
   getAllUsersInRezervationInDay(date:string){
-    let headers = new HttpHeaders({
-    'Access-Control-Allow-Origin': '*'
-  });
-    return this.http.get<Map<string,User[]>>('https://jurezapp-production.up.railway.app/api/user/currentrezervation/'+date, {headers}).pipe(
+    return this.http.get<Map<string,User[]>>('https://jurezapp-production.up.railway.app/api/user/currentrezervation/'+date).pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
@@ -85,7 +71,6 @@ export class UserService {
 
   getByEmail(email: string, token: string | undefined){
     let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*',
       Authorization: 'Bearer ' + token
     });
     return this.http.get<User>('https://jurezapp-production.up.railway.app/api/user/email/'+email, {headers}).pipe(
@@ -103,10 +88,7 @@ export class UserService {
   }
 
   isAutorized(userdto: UserDTO){
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
-    return this.http.post('https://jurezapp-production.up.railway.app/api/user/auth/',userdto, {headers,responseType: 'text'})
+    return this.http.post('https://jurezapp-production.up.railway.app/api/user/auth',userdto, {responseType: 'text'})
       .pipe(map(token => {
         if (!token) {
           return undefined
@@ -152,10 +134,7 @@ export class UserService {
   }
 
   add(user: User){
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
-      return this.http.post('https://jurezapp-production.up.railway.app/api/user', user,{headers}).pipe(
+      return this.http.post('https://jurezapp-production.up.railway.app/api/user', user).pipe(
         catchError(error => {
           let errorMsg: string;
           if (error.error instanceof ErrorEvent) {
@@ -168,19 +147,13 @@ export class UserService {
       );
   }
 
-  edit(user: User){
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
-    return  this.http.put<void>(`https://jurezapp-production.up.railway.app/api/user/${user.id}`, user , {headers})
+  edit(user: User) {
+    return  this.http.put<void>(`https://jurezapp-production.up.railway.app/api/user/${user.id}`, user)
 
   }
 
   delete(id:number){
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
-    return this.http.delete<User>("https://jurezapp-production.up.railway.app/api/user/" + id , {headers} )
+    return this.http.delete<User>("https://jurezapp-production.up.railway.app/api/user/" + id )
   }
 
   private static getServerErrorMessage(error: HttpErrorResponse): string {

@@ -27,6 +27,7 @@ export class UserInterceptor implements HttpInterceptor {
     if (this.localStorageService.get("token")) {
       return next.handle(request.clone({
         setHeaders: {
+          'Content-Type': 'application/json',
           Authorization: 'Bearer ' + this.localStorageService.get("token")
         }
       }));

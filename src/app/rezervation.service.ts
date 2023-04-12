@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Rezervation} from "./rezervation";
 import {User} from "./user";
 import {catchError, throwError} from "rxjs";
@@ -14,10 +14,7 @@ export class RezervationService {
   }
 
   getGeneratedRezervation(date: string ){
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
-    return this.http.get<Rezervation[]>('https://jurezapp-production.up.railway.app/api/rezervation/kalendar/' + date, {headers}).pipe(
+    return this.http.get<Rezervation[]>('https://jurezapp-production.up.railway.app/api/rezervation/kalendar/' + date).pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
@@ -33,10 +30,7 @@ export class RezervationService {
   }
 
   getRezervationOnThisTime(date: string | null){
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
-    return this.http.get<number>('https://jurezapp-production.up.railway.app/api/rezervation/time/' +date, {headers}).pipe(
+    return this.http.get<number>('https://jurezapp-production.up.railway.app/api/rezervation/time/' +date).pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
@@ -50,11 +44,8 @@ export class RezervationService {
   }
 
   bookRezervation(date: string | null, id: number){
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
     // @ts-ignore
-    return this.http.post("https://jurezapp-production.up.railway.app/api/rezervation/time/" + id + '/' + date, {headers}).pipe(
+    return this.http.post("https://jurezapp-production.up.railway.app/api/rezervation/time/" + id + '/' + date).pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
@@ -89,11 +80,8 @@ export class RezervationService {
   }
 
   cancelRezervation(date: string, id:number){
-    let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*'
-    });
     // @ts-ignore
-    return this.http.delete("https://jurezapp-production.up.railway.app/api/rezervation/time/cancel/" + date + '/' + id , {headers}).pipe(
+    return this.http.delete("https://jurezapp-production.up.railway.app/api/rezervation/time/cancel/" + date + '/' + id ).pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
