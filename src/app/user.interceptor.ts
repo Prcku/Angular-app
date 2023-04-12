@@ -29,7 +29,8 @@ export class UserInterceptor implements HttpInterceptor {
         setHeaders: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + this.localStorageService.get("token")
-        }
+        },
+        withCredentials: true
       }));
     }
     return next.handle(request)
