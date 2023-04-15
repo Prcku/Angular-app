@@ -17,6 +17,7 @@ export class EditUserComponent  {
   infoText: string | undefined;
   item = {} as User;
   private id: number;
+  isTextVisible = false;
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,
@@ -34,12 +35,20 @@ export class EditUserComponent  {
         })
   }
 
+  changedthebox(){
+    if (!this.isTextVisible){
+      this.isTextVisible = true;
+    }
+    else {
+      this.isTextVisible = false
+    }
+  }
+
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
   modo(){
-    console.log(this.item.role)
     switch(this.item.role) {
       case "ROLE_ADMIN":
           this.item.role= "ROLE_ADMIN"

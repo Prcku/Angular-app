@@ -3,9 +3,6 @@ import {NgForm} from "@angular/forms";
 import {UserService} from "../user.service";
 import { Router} from "@angular/router";
 import {UserDTO} from "../userDTO";
-import {error} from "jquery";
-import {Observable, ReplaySubject} from "rxjs";
-import {ChangeDetection} from "@angular/cli/lib/config/workspace-schema";
 import {LocalStorageService} from "angular-2-local-storage";
 
 
