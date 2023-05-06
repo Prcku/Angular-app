@@ -15,9 +15,11 @@
   <ul>
     <li *ngFor="let recipient of rezervations | keyvalue"  >
       <h6> {{recipient.key | date: "HH:mm"}} </h6>
-      <span *ngFor="let user of recipient.value" class="p-3 m-5">
-        {{user.firstName}} {{user.lastName}} <a *ngIf="compareTime(recipient.key)" (click)="openModal(template,user,recipient.key)"><i class="fa-solid fa-trash-can"></i></a>
-      </span>
+      <div class="row ms-3" >
+        <div  class=" col-md-2 col-sm-4 card Card me-3"  id="mainCard" style="max-width: 15rem;" *ngFor="let user of recipient.value">
+          <div class=" card-body" style="display: flex; justify-content: center;">{{user.firstName}} {{user.lastName}}   <a *ngIf="compareTime(recipient.key)" (click)="openModal(template,user,recipient.key)"><i class="fa-solid fa-trash-can"></i></a></div>
+        </div>
+      </div>
     </li>
   </ul>
 </div>

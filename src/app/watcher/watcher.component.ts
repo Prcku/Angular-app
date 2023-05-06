@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
+import {UserService} from "../user.service";
+import {Observable} from "rxjs";
+import {User} from "../user";
 
 @Component({
   selector: 'app-watcher',
   templateUrl: './watcher.component.html',
   styleUrls: ['./watcher.component.scss']
 })
-export class WatcherComponent implements OnInit {
+export class WatcherComponent{
 
-  constructor() { }
+  user$: Observable<User | undefined>;
+  user!: User;
 
-  ngOnInit(): void {
+  constructor(private userService: UserService) {
+    this.user$ =this.userService.onUserChange()
+    if (this.user$ != undefined) {
+      this.user$.subscribe(value => {
+          // @ts-ignore
+          this.user = value;
+        }
+      )
+    }
   }
+
+
 
 }

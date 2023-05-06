@@ -14,13 +14,15 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 export class MyRezervationComponent  {
 
   user = {} as User;
-  count = 0 ;
   items: Rezervation[] | undefined;
   inactive: Rezervation[] = [];
   modalRef!: BsModalRef;
   cancel_time!: string;
   rezervation_to_delete!: Rezervation;
   private id: number;
+  public isHovered = false;
+  rank_numbers = [1,10,25,50,100]
+
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,
@@ -33,6 +35,20 @@ export class MyRezervationComponent  {
           this.user = value;
           this.reload();
         })
+  }
+
+  //pre pohyb myši
+  onHover() {
+    this.isHovered = true;
+  }
+
+  onLeave() {
+    this.isHovered = false;
+  }
+
+  //na zaokruhlenie nadol funkcia pre vypis odcvicenych hodin
+  roundDown(numberToRound: number): number {
+    return Math.floor(numberToRound);
   }
 
   openModal(template: TemplateRef<any>, rezervation_to_delete: Rezervation) {
@@ -49,7 +65,6 @@ export class MyRezervationComponent  {
         }
       }
       },)
-
   }
 
   confirm(): void {

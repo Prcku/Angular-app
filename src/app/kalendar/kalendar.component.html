@@ -1,4 +1,4 @@
-<form [formGroup]="myForm">
+<form class="ms-3" [formGroup]="myForm">
   <div class="row mb-3">
     <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group">
       <input type="text" class="form-control mb-3" placeholder="Datepicker" bsDatepicker formControlName="date" (ngModelChange)="reload()" />
@@ -8,13 +8,12 @@
     </div>
   </div>
 </form>
-<div class="row">
-      <div class=" m-1 col-md-2" *ngFor="let day of item">
-        <div class="card text-white bg-secondary mb-2 " style="max-width: 8rem;">
-          <span class="card-header" style="display: flex; justify-content: center;"> <h5>{{day.usersCount}}/4</h5> </span>
-          <div class="card-body" style="display: flex; justify-content: center;">
+<div class="row ms-3" >
+      <div  class=" col-md-2 col-sm-6 col-12 "  *ngFor="let day of item">
+        <div id="mainCard" class="card mb-4 "[class.Card_not_disabled]="day.usersCount == 0 && day.status == true " [class.onePerson]="day.usersCount == 1 && day.status == true " [class.twoPerson]="day.usersCount == 2 && day.status == true " [class.threePerson]="day.usersCount == 3 && day.status == true " [class.fourPerson]="day.usersCount == 4" [class.Card_disabled]="day.status == false" style="max-width: 8rem;">
+          <span class="card-header" style="display: flex; justify-content: center; z-index: 3"> <h5>{{day.usersCount}}/4</h5> </span>
+          <div class="card-body" style="display: flex; justify-content: center; z-index: 3">
             <button class="btn btn-outline-light" [disabled]="day.status == false || day.usersCount == 4" type="button" (click)="openModal(template,day.currentTime)">{{day.currentTime | date: "HH:mm"}}</button>
-
           </div>
         </div>
 

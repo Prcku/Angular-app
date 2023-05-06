@@ -1,21 +1,32 @@
 
 <div>
-  <h1>Aktuálne rezervácie</h1>
+  <div class="statistiky">
+    <h1>Aktuálne rezervácie</h1>
+    <div>
+      <p>
+        Odcvičených hodín: <b>{{ roundDown((this.inactive.length * 75) / 60)}}h {{ (this.inactive.length * 75) % 60  }}m</b>
+      </p>
+    </div>
+    <div class="rating" >
+      <span *ngFor="let rank of rank_numbers; let j = index" (mouseenter)="onHover()" (mouseleave)="onLeave()" [class.hovered]="isHovered" class="star" [class.filled]="inactive.length >= rank">
+        <p class="popup"><b> Ziskávaš úroveň {{ j +1 }}</b> <br> za dosiahnutie <b>{{ rank }}</b> tréningov</p>
+      </span>
+    </div>
+  </div>
   <table class="table table-sm">
     <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">ČAS</th>
-      <th scope="col">Zrušit</th>
+    <tr >
+      <th scope="col" class="CAS" >ČAS</th>
+      <th scope="col" >Zrušit</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let item of items ">
-      <th *ngIf="item.status == true" scope="row">#</th>
-      <td *ngIf="item.status == true">{{item.currentTime}}</td>
-      <td *ngIf="item.status == true">
+        <td  *ngIf="item.status == true">{{item.currentTime | date:'dd.MM.yyyy HH:mm'}}</td>
+        <td  *ngIf="item.status == true">
         <a (click)="openModal(template,item)"><i class="fa-solid fa-trash-can"></i></a>
       </td>
+
     </tr>
     </tbody>
   </table>
@@ -26,12 +37,12 @@
   <table class="table table-sm">
     <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">ČAS</th>
+      <th scope="col" style="width: 5%; padding-left: 10px">#</th>
+      <th scope="col" class="CAS">ČAS</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of inactive; let j = index;">
+    <tr *ngFor="let item of inactive | slice:0:20; let j = index">
         <th scope="row">{{j + 1}}</th>
         <td>{{item.currentTime}}</td>
     </tr>
