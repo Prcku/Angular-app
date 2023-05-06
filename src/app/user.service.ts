@@ -21,15 +21,15 @@ export class UserService {
 
   getAll(){
     console.log("ziskanie vsetkych userov")
-    return this.http.get<User[]>('/api/user');
+    return this.http.get<User[]>('https://jurezapp-production.up.railway.app/api/user');
   }
 
   getById(id:number){
-    return this.http.get<User>('/api/user/' + id);
+    return this.http.get<User>('https://jurezapp-production.up.railway.app/api/user/' + id);
   }
 
   getUserRezervation(id:number){
-    return this.http.get<Rezervation[]>('/api/user/rezervation/' + id).pipe(
+    return this.http.get<Rezervation[]>('https://jurezapp-production.up.railway.app/api/user/rezervation/' + id).pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
@@ -43,7 +43,7 @@ export class UserService {
   }
 
   getCurrentUsersInRezervation(){
-    return this.http.get<User[]>('/api/user/currentrezervation/').pipe(
+    return this.http.get<User[]>('https://jurezapp-production.up.railway.app/api/user/currentrezervation/').pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
@@ -57,7 +57,7 @@ export class UserService {
   }
 
   getAllUsersInRezervationInDay(date:string){
-    return this.http.get<Map<string,User[]>>('/api/user/currentrezervation/'+date).pipe(
+    return this.http.get<Map<string,User[]>>('https://jurezapp-production.up.railway.app/api/user/currentrezervation/'+date).pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
@@ -74,7 +74,7 @@ export class UserService {
     let headers = new HttpHeaders({
       Authorization: 'Bearer ' + token
     });
-    return this.http.get<User>('/api/user/email/'+email, {headers}).pipe(
+    return this.http.get<User>('https://jurezapp-production.up.railway.app/api/user/email/'+email, {headers}).pipe(
       catchError(error => {
         let errorMsg: string;
         if (error.error instanceof ErrorEvent) {
@@ -92,7 +92,7 @@ export class UserService {
 
   isAutorized(userdto: UserDTO){
     // userdto.password = CryptoJS.SHA256(userdto.password).toString();
-    return this.http.post('/api/user/auth',userdto, {responseType: 'text'})
+    return this.http.post('https://jurezapp-production.up.railway.app/api/user/auth',userdto, {responseType: 'text'})
       .pipe(map(token => {
         if (!token) {
           return undefined
@@ -138,7 +138,7 @@ export class UserService {
   }
 
   add(user: User){
-      return this.http.post('/api/user', user).pipe(
+      return this.http.post('https://jurezapp-production.up.railway.app/api/user', user).pipe(
         catchError(error => {
           let errorMsg: string;
           if (error.error instanceof ErrorEvent) {
@@ -152,12 +152,12 @@ export class UserService {
   }
 
   edit(user: User) {
-    return  this.http.put<void>(`/api/user/${user.id}`, user)
+    return  this.http.put<void>(`https://jurezapp-production.up.railway.app/api/user/${user.id}`, user)
 
   }
 
   delete(id:number){
-    return this.http.delete<User>("/api/user/" + id )
+    return this.http.delete<User>("https://jurezapp-production.up.railway.app/api/user/" + id )
   }
 
   private static getServerErrorMessage(error: HttpErrorResponse): string {
