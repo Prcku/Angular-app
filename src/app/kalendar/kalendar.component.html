@@ -23,8 +23,8 @@
 <ng-template #template>
   <div class="modal-body text-center">
     <p>Naozaj si chceš rezervovať zadaný termín ? <b> {{cancel_time | date: "dd.MM HH:mm"}} </b> </p>
-    <button type="button" class="btn btn-default" (click)="confirm(templateAfterConfirm)" >Yes</button>
-    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+    <button type="button" class="btn btn-primary" (click)="confirm(templateAfterConfirm)" >Áno</button>
+    <button type="button" class="btn btn-default" (click)="decline()" >Nie</button>
   </div>
 </ng-template>
 <ng-template #templateAfterConfirm>

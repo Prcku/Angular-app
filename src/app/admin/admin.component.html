@@ -2,7 +2,7 @@
 
 <div *ngIf="currentUsers?.length && !!currentUsers; else nobody">
   <span style="display: flex; justify-content: space-between; align-items: flex-end">
-  <h2>Aktualne v má rezerváciu : </h2>
+  <h2>Aktuálne má rezerváciu: </h2>
   <a routerLink="allrezervation" style="color: black">Zobrazit všetky rezervácie </a>
   </span>
   <div class="row ms-3" >
@@ -17,13 +17,13 @@
 
 <ng-template #nobody >
   <span style="display: flex; justify-content: space-between; align-items: flex-end">
-      <h2>Aktualne v nemá nik rezerváciu ! </h2>
+      <h2>Aktuálne nemá nikto rezerváciu! </h2>
       <a routerLink="allrezervation" style="color: black">Zobrazit všetky rezervácie </a>
   </span>
 </ng-template>
 
 <h2 class="mb-3">
-  Zoznam pouzivatelov
+  Zoznam použivateľov
 </h2>
 
 <table class="table table-bordered table-striped table-hover"  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
@@ -51,8 +51,8 @@
 <ng-template #template>
   <div class="modal-body text-center">
     <p>Naozaj chceš odstraniť zadaného použivateľa ? <b>{{ user.firstName }} {{ user.lastName }}</b></p>
-    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
-    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+    <button type="button" class="btn btn-primary" (click)="confirm()" >Áno</button>
+    <button type="button" class="btn btn-default" (click)="decline()" >Nie</button>
   </div>
 </ng-template>
 

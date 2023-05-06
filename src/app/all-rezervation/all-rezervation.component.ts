@@ -58,7 +58,7 @@ export class AllRezervationComponent {
   }
 
   selected_date() {
-    this.myForm.value.date.setHours(4, 0, 0, 0);
+    this.myForm.value.date.setHours(6, 0, 0, 0);
     this.myForm.value.date =
       this.format(this.myForm.value.date.getFullYear(), 4) +
       '-' +

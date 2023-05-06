@@ -9,7 +9,7 @@
     </div>
     <div class="rating" >
       <span *ngFor="let rank of rank_numbers; let j = index" (mouseenter)="onHover()" (mouseleave)="onLeave()" [class.hovered]="isHovered" class="star" [class.filled]="inactive.length >= rank">
-        <p class="popup"><b> Ziskávaš úroveň {{ j +1 }}</b> <br> za dosiahnutie <b>{{ rank }}</b> tréningov</p>
+        <p class="popup"><b> Ziskávaš úroveň {{ j +1 }}</b> <br> po absolvovaní <b>{{ rank }}</b> tréningu</p>
       </span>
     </div>
   </div>
@@ -52,8 +52,8 @@
 <ng-template #template>
   <div class="modal-body text-center">
     <p>Naozaj chceš odstraniť zadanú rezerváciu ? {{rezervation_to_delete.currentTime | date: "MM.dd HH:mm"}}</p>
-    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
-    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+    <button type="button" class="btn btn-primary" (click)="confirm()" >Áno</button>
+    <button type="button" class="btn btn-default" (click)="decline()" >Nie</button>
   </div>
 </ng-template>
 
