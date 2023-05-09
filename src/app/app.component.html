@@ -1,16 +1,16 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
   <div class="container-sm">
      <span *ngIf="user$ | async as user; else loginHome" >
-       <a *ngIf="user.role != 'ROLE_WATCHER'; else loginHome  " class="navbar-brand" routerLink="home">JuRez</a>
+       <a *ngIf="user.role != 'ROLE_WATCHER'; else loginHome  " class="navbar-brand" routerLink="home">JuRes</a>
      </span>
      <ng-template #loginHome class="bg-primary text-white">
-      <a class="navbar-brand" routerLink="login">JuRez</a>
+      <a class="navbar-brand" routerLink="login">JuRes</a>
     </ng-template>
     <div class="collapse navbar-collapse" id="navbarNav" style="display: flex">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="user$ | async as user ; else loginMyRezervation">
         <li *ngIf="user.role == 'ROLE_ADMIN'; else AdminMod">
             <a class="text-white text-decoration-none me-3" [routerLink]="['home/mojerezervacie',user.id]">Moje Rezervácie</a>
-            <a class="text-white text-decoration-none" [routerLink]="['adminpage']">Admin Page</a>
+            <a class="text-white text-decoration-none" [routerLink]="['adminpage']">Admin stránka</a>
         </li>
           <ng-template #AdminMod >
             <li *ngIf="user.role == 'ROLE_USER'; else loginMyRezervation">
@@ -25,12 +25,12 @@
       </ul>
       <span *ngIf="user$ | async as user;">
         <span class="navbar-text mx-2">{{user.firstName}}</span>
-        <a class="btn btn-secondary" routerLink="login" (click)="logout()">Logout</a>
+        <a class="btn btn-secondary" routerLink="login" (click)="logout()">Odhlasiť</a>
       </span>
     </div>
   </div>
 </nav>
-<div class="container" style="padding: 10px ; box-shadow: 12px 7px 7px #6c757d; background: rgb(255,255,255)">
+<div class="container" style="padding: 10px ;">
   <router-outlet style="padding: 10px" ></router-outlet>
 </div>
 
