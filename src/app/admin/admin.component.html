@@ -3,7 +3,7 @@
 <div *ngIf="currentUsers?.length && !!currentUsers; else nobody">
   <span style="display: flex; justify-content: space-between; align-items: flex-end">
   <h2>Aktuálne má rezerváciu: </h2>
-  <a routerLink="allrezervation" style="color: black">Zobrazit všetky rezervácie </a>
+  <h3><a routerLink="allrezervation" style="color: black">Zobrazit všetky rezervácie </a></h3>
   </span>
   <div class="row ms-3" >
     <div  class=" col-md-2 col-sm-6 col-12 "  *ngFor="let user of currentUsers">
