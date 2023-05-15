@@ -16,8 +16,6 @@
             <button class="btn btn-outline-light" [disabled]="day.status == false || day.usersCount == 4" type="button" (click)="openModal(template,day.currentTime)">{{day.currentTime | date: "HH:mm"}}</button>
           </div>
         </div>
-
-<!--        <button *ngIf="day.status == false " class="btn btn-primary" type="button" disabled >{{day.currentTime | date: "HH:mm"}}  {{day.usersCount}}/4</button>-->
       </div>
   </div>
 <ng-template #template>

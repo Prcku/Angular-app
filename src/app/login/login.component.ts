@@ -12,12 +12,6 @@ import {LocalStorageService} from "angular-2-local-storage";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent{
-  // title = 'loginGoogle';
-  //
-  // auth2: any;
-  //
-  // @ViewChild('loginRef', {static: true }) loginElement!: ElementRef;
-
   item = {} as UserDTO;
   error: string | undefined;
   guser: any;
