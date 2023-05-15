@@ -17,7 +17,7 @@
       <h6> {{recipient.key | date: "HH:mm"}} </h6>
       <div class="row ms-3" >
         <div  class=" col-md-2 col-sm-4 card Card me-3"  id="mainCard" style="max-width: 15rem;" *ngFor="let user of recipient.value">
-          <div class=" card-body" style="display: flex; justify-content: center;">{{user.firstName}} {{user.lastName}}   <a *ngIf="compareTime(recipient.key)" (click)="openModal(template,user,recipient.key)"><i class="fa-solid fa-trash-can"></i></a></div>
+          <div class=" card-body" style="display: flex; justify-content: center; border: solid black 1px">{{user.firstName}} {{user.lastName}}   <a *ngIf="compareTime(recipient.key)" (click)="openModal(template,user,recipient.key)"><i class="fa-solid fa-trash-can"></i></a></div>
         </div>
       </div>
     </li>
@@ -25,7 +25,7 @@
 </div>
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Naozaj chceš odstraniť zadanú rezerváciu ? <b> {{cancel_time | date: "MM.dd HH:mm"}} </b></p>
+    <p>Naozaj chceš odstraniť zadanú rezerváciu ? <b> {{cancel_time | date: "dd.MM HH:mm"}} </b></p>
     <button type="button" class="btn btn-primary" (click)="confirm()" >Áno</button>
     <button type="button" class="btn btn-default" (click)="decline()" >Nie</button>
   </div>

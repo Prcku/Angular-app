@@ -51,7 +51,7 @@
 </div>
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Naozaj chceš odstraniť zadanú rezerváciu ? {{rezervation_to_delete.currentTime | date: "MM.dd HH:mm"}}</p>
+    <p>Naozaj chceš odstraniť zadanú rezerváciu ? {{rezervation_to_delete.currentTime | date: "dd.MM HH:mm"}}</p>
     <button type="button" class="btn btn-primary" (click)="confirm()" >Áno</button>
     <button type="button" class="btn btn-default" (click)="decline()" >Nie</button>
   </div>
