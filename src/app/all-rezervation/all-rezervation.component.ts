@@ -47,14 +47,14 @@ export class AllRezervationComponent {
   compareTime(date: string){
     const rezervationTime = new Date(date)
     // v pr9pade ze nebude sediet cas musime tu oddobrat
-    // if (rezervationTime.getTime() <= new Date().getTime() - (2 * 60 * 60 * 1000) ){
-    //   return false
-    // }
-    // return true
-    if (rezervationTime.getTime() <= new Date().getTime() ){
+    if (rezervationTime.getTime() <= new Date().getTime() - (2 * 60 * 60 * 1000) ){
       return false
     }
     return true
+    // if (rezervationTime.getTime() <= new Date().getTime() ){
+    //   return false
+    // }
+    // return true
   }
 
   reload(){
@@ -88,24 +88,24 @@ export class AllRezervationComponent {
       ':' +
       this.format(this.myForm.value.date.getSeconds(), 2);
     this.userService.getAllUsersInRezervationInDay(this.myForm.value.date).subscribe( value => {
-      let updatedMap = value;
+      this.rezervations = value;
 
-      for (const [key, value] of updatedMap.entries()) {
-        // Modify the key and value
-        const rezervationTime = new Date(key).getTime()
-        let updatedKey = rezervationTime.toLocaleString('en-US', this.options);
-        console.log("cas ktori sa tam ide dat", updatedKey)
-        // Create a new entry with the updated key and value
-        this.rezervations.set(updatedKey, value);
-
-        // Delete the old entry
-        updatedMap.delete(key);
-      }
+      // for (const [key, value] of updatedMap.entries()) {
+      //   // Modify the key and value
+      //   const rezervationTime = new Date(key).getTime()
+      //   let updatedKey = rezervationTime.toLocaleString('en-US', this.options);
+      //   console.log("cas ktori sa tam ide dat", updatedKey)
+      //   // Create a new entry with the updated key and value
+      //   this.rezervations.set(updatedKey, value);
+      //
+      //   // Delete the old entry
+      //   updatedMap.delete(key);
+      // }
 
 // Print the updated map
-      for (const [key, value] of this.rezervations.entries()) {
-        console.log(key + ': ' + value);
-      }
+//       for (const [key, value] of this.rezervations.entries()) {
+//         console.log(key + ': ' + value);
+//       }
     })
   }
 
