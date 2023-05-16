@@ -17,7 +17,7 @@
       <h6> {{recipient.key | date: "HH:mm"}} </h6>
       <div class="row ms-3" >
         <div  class=" col-md-2 col-sm-4 card Card me-3"  id="mainCard" style="max-width: 15rem;" *ngFor="let user of recipient.value">
-          <div class=" card-body" style="display: flex; justify-content: center; border: solid black 1px">{{user.firstName}} {{user.lastName}}   <a *ngIf="compareTime(recipient.key)" (click)="openModal(template,user,recipient.key)"><i class="fa-solid fa-trash-can"></i></a></div>
+          <div class=" card-body" style="display: flex; justify-content: center;">{{user.firstName}} {{user.lastName}}   <a *ngIf="compareTime(recipient.key)" (click)="openModal(template,user,recipient.key)"><i class="fa-solid fa-trash-can"></i></a></div>
         </div>
       </div>
     </li>
