@@ -16,7 +16,7 @@ import {Observable} from "rxjs";
 })
 export class AllRezervationComponent {
 
-    rezervations: Map<string,User[]> | undefined;
+    rezervations = new Map<string,User[]>() ;
     modalRef!: BsModalRef;
     myForm: FormGroup;
     user!: User;
@@ -88,15 +88,24 @@ export class AllRezervationComponent {
       ':' +
       this.format(this.myForm.value.date.getSeconds(), 2);
     this.userService.getAllUsersInRezervationInDay(this.myForm.value.date).subscribe( value => {
-      this.rezervations = value;
-      console.log(this.rezervations)
-      for (let [key, value] of this.rezervations) {
+      let updatedMap = value;
+
+      for (const [key, value] of updatedMap.entries()) {
+        // Modify the key and value
         const rezervationTime = new Date(key).getTime()
-        const datestring = rezervationTime.toLocaleString('en-US', this.options);
-        key = datestring;
-        console.log(datestring)
+        let updatedKey = rezervationTime.toLocaleString('en-US', this.options);
+        console.log("cas ktori sa tam ide dat", updatedKey)
+        // Create a new entry with the updated key and value
+        this.rezervations.set(updatedKey, value);
+
+        // Delete the old entry
+        updatedMap.delete(key);
       }
-      console.log("toto su potom",this.rezervations)
+
+// Print the updated map
+      for (const [key, value] of this.rezervations.entries()) {
+        console.log(key + ': ' + value);
+      }
     })
   }
 
