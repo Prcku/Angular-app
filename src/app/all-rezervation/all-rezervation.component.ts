@@ -48,7 +48,7 @@ export class AllRezervationComponent {
     const rezervationTime = new Date(date)
     // v pr9pade ze nebude sediet cas musime tu oddobrat
     console.log(date)
-    if (rezervationTime.getTime() <= new Date().getTime() + (2 * 60 * 60 * 1000) ){
+    if (rezervationTime.getTime() <= new Date().getTime() ){
       return false
     }
     return true
