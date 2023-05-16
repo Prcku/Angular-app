@@ -46,7 +46,12 @@ export class AllRezervationComponent {
   //aby sa nedali zrusit rezervacie ktore uz boli
   compareTime(date: string){
     const rezervationTime = new Date(date)
-    if (rezervationTime.getTime() <= new Date().getTime() - (2 * 60 * 60 * 1000) ){
+    // v pr9pade ze nebude sediet cas musime tu oddobrat
+    // if (rezervationTime.getTime() <= new Date().getTime() - (2 * 60 * 60 * 1000) ){
+    //   return false
+    // }
+    // return true
+    if (rezervationTime.getTime() <= new Date().getTime() ){
       return false
     }
     return true
@@ -84,11 +89,14 @@ export class AllRezervationComponent {
       this.format(this.myForm.value.date.getSeconds(), 2);
     this.userService.getAllUsersInRezervationInDay(this.myForm.value.date).subscribe( value => {
       this.rezervations = value;
+      console.log(this.rezervations)
       for (let [key, value] of this.rezervations) {
-        const rezervationTime = new Date(key).getTime() - (2 * 60 * 60 * 1000)
-        key = rezervationTime.toLocaleString('en-US', this.options);
-        console.log(key)
+        const rezervationTime = new Date(key).getTime()
+        const datestring = rezervationTime.toLocaleString('en-US', this.options);
+        key = datestring;
+        console.log(datestring)
       }
+      console.log("toto su potom",this.rezervations)
     })
   }
 
