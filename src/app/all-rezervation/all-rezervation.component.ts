@@ -21,7 +21,16 @@ export class AllRezervationComponent {
     myForm: FormGroup;
     user!: User;
     cancel_time!: string;
-
+    options: Intl.DateTimeFormatOptions = {
+      timeZone: 'Europe/Bratislava',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false // To display 24-hour format
+  };
   constructor(private userService: UserService,
               private rezervationService: RezervationService,
               private modalService: BsModalService,
@@ -37,7 +46,7 @@ export class AllRezervationComponent {
   //aby sa nedali zrusit rezervacie ktore uz boli
   compareTime(date: string){
     const rezervationTime = new Date(date)
-    if (rezervationTime.getTime() <= new Date().getTime() ){
+    if (rezervationTime.getTime() <= new Date().getTime() - (2 * 60 * 60 * 1000) ){
       return false
     }
     return true
@@ -57,6 +66,8 @@ export class AllRezervationComponent {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
+
+
   selected_date() {
     this.myForm.value.date.setHours(6, 0, 0, 0);
     this.myForm.value.date =
@@ -73,6 +84,11 @@ export class AllRezervationComponent {
       this.format(this.myForm.value.date.getSeconds(), 2);
     this.userService.getAllUsersInRezervationInDay(this.myForm.value.date).subscribe( value => {
       this.rezervations = value;
+      for (let [key, value] of this.rezervations) {
+        const rezervationTime = new Date(key).getTime() - (2 * 60 * 60 * 1000)
+        key = rezervationTime.toLocaleString('en-US', this.options);
+        console.log(key)
+      }
     })
   }
 
