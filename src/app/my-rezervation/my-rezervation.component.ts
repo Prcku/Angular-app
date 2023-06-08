@@ -64,7 +64,13 @@ export class MyRezervationComponent  {
       this.items = value;
       for (let item of this.items) {
         if( !item.status ){
-          this.inactive.push(item);
+          for (let one of this.inactive){
+            if (one.currentTime == item.currentTime){
+
+            }else{
+              this.inactive.push(item);
+            }
+          }
         }
       }
       },)
