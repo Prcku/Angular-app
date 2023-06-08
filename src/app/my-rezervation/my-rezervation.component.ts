@@ -57,6 +57,7 @@ export class MyRezervationComponent  {
   }
 
   reload(){
+    this.items = undefined;
     this.userService.getUserRezervation(this.user.id).subscribe(value => {
       this.items = value;
       for (let item of this.items) {
