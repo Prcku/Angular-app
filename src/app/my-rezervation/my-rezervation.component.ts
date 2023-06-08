@@ -60,17 +60,12 @@ export class MyRezervationComponent  {
     while(this.inactive.length){
       this.inactive.pop();
     }
+    this.items = undefined;
     this.userService.getUserRezervation(this.user.id).subscribe(value => {
       this.items = value;
       for (let item of this.items) {
         if( !item.status ){
-          for (let one of this.inactive){
-            if (one.currentTime == item.currentTime){
-
-            }else{
-              this.inactive.push(item);
-            }
-          }
+          this.inactive.push(item);
         }
       }
       },)
